@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Users, Cake, Heart } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Users, Cake, Heart, Check } from "lucide-react";
 import { Eyebrow } from "./StorySections";
 
 type Table = { id: string; seats: number; loc: "Window" | "Center" | "Private"; available: boolean; x: number; y: number };
@@ -20,6 +20,7 @@ export function EmberReservation() {
   const [table, setTable] = useState<string | null>("C1");
   const [filter, setFilter] = useState<"All" | Table["loc"]>("All");
   const [occasion, setOccasion] = useState<"None" | "Birthday" | "Anniversary">("None");
+  const [confirmed, setConfirmed] = useState<null | { name: string; time: string; date: string }>(null);
   const visible = TABLES.filter((t) => filter === "All" || t.loc === filter);
 
   return (
@@ -105,7 +106,15 @@ export function EmberReservation() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={(e) => {
+              e.preventDefault();
+              const f = new FormData(e.currentTarget);
+              setConfirmed({
+                name: (f.get("name") as string) || "Guest",
+                time: (f.get("time") as string) || "20:00",
+                date: (f.get("date") as string) || new Date().toISOString().slice(0, 10),
+              });
+            }}
             className="glass-strong rounded-3xl p-6 lg:p-8"
           >
             <h3 className="font-display text-2xl">Confirm your evening</h3>
@@ -114,11 +123,11 @@ export function EmberReservation() {
             <div className="mt-6 grid grid-cols-2 gap-3">
               <label className="block">
                 <div className="mb-1 text-xs uppercase tracking-wider text-muted-foreground">Date</div>
-                <input type="date" defaultValue={new Date().toISOString().slice(0, 10)} className="input" />
+                <input name="date" type="date" defaultValue={new Date().toISOString().slice(0, 10)} className="input" />
               </label>
               <label className="block">
                 <div className="mb-1 text-xs uppercase tracking-wider text-muted-foreground">Time</div>
-                <select className="input" defaultValue="20:00">
+                <select name="time" className="input" defaultValue="20:00">
                   {["19:00", "19:30", "20:00", "20:30", "21:00"].map((t) => <option key={t}>{t}</option>)}
                 </select>
               </label>
@@ -146,13 +155,30 @@ export function EmberReservation() {
             </div>
 
             <div className="mt-3 grid grid-cols-2 gap-3">
-              <input placeholder="Full name" className="input" />
-              <input placeholder="Phone" className="input" />
+              <input name="name" placeholder="Full name" className="input" />
+              <input name="phone" placeholder="Phone" className="input" />
             </div>
 
-            <button className="btn-gold mt-6 w-full rounded-full px-6 py-3.5 text-sm font-semibold" data-cursor>
+            <button type="submit" className="btn-gold mt-6 w-full rounded-full px-6 py-3.5 text-sm font-semibold" data-cursor>
               Reserve Now
             </button>
+
+            <AnimatePresence>
+              {confirmed && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  className="mt-5 flex items-start gap-3 rounded-2xl border border-[color:var(--ember)] bg-[color:color-mix(in_oklab,var(--ember)_10%,transparent)] p-4 text-sm"
+                >
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--ember)]" />
+                  <div>
+                    <div className="font-semibold">Table {table} confirmed for {confirmed.name}.</div>
+                    <div className="text-muted-foreground">{confirmed.date} · {confirmed.time} · {occasion !== "None" ? `${occasion} setup` : "Standard setting"}. We'll text the details to your phone.</div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.form>
         </div>
       </div>
