@@ -241,3 +241,19 @@
   background-size: 200% 100%;
   animation: shimmer 3s linear infinite;
 }
+
+.input {
+  width: 100%;
+  background: color-mix(in oklab, var(--surface) 70%, transparent);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  border-radius: 9999px;
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--gold) 18%, transparent);
+}
