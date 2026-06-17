@@ -28,7 +28,7 @@ export function EmberNav() {
             <div className="grid h-9 w-9 place-items-center rounded-full" style={{ background: "var(--gradient-ember)" }}>
               <Flame className="h-4 w-4 text-[color:var(--primary-foreground)]" />
             </div>
-            <span className="font-display text-2xl tracking-[0.2em]">EMBER</span>
+            <span className="font-display text-2xl tracking-[0.2em]">AURUM</span>
           </Link>
           <nav className="hidden items-center gap-8 md:flex">
             {links.map((l) => (
@@ -74,7 +74,7 @@ export function EmberFooter() {
             <div className="grid h-9 w-9 place-items-center rounded-full" style={{ background: "var(--gradient-ember)" }}>
               <Flame className="h-4 w-4 text-[color:var(--primary-foreground)]" />
             </div>
-            <span className="font-display text-2xl tracking-[0.2em]">EMBER</span>
+            <span className="font-display text-2xl tracking-[0.2em]">AURUM</span>
           </div>
           <p className="mt-4 max-w-xs text-sm text-muted-foreground">
             A wood-fired tasting room. Reservations only. One seating, two services, every night.
@@ -84,7 +84,7 @@ export function EmberFooter() {
           <div className="text-xs uppercase tracking-[0.3em] text-[color:var(--ember)]">Visit</div>
           <p className="mt-3 text-sm text-muted-foreground">18 Lotus Lane,<br />Bandra West, Mumbai</p>
           <p className="mt-3 text-sm text-muted-foreground">+91 98765 43210</p>
-          <p className="text-sm text-muted-foreground">hello@ember.dining</p>
+          <p className="text-sm text-muted-foreground">hello@aurum.dining</p>
         </div>
         <div>
           <div className="text-xs uppercase tracking-[0.3em] text-[color:var(--ember)]">Hours</div>
@@ -97,7 +97,7 @@ export function EmberFooter() {
           </div>
         </div>
       </div>
-      <p className="mt-12 text-center text-xs text-muted-foreground">© {new Date().getFullYear()} EMBER. Crafted in fire.</p>
+      <p className="mt-12 text-center text-xs text-muted-foreground">© {new Date().getFullYear()} AURUM. Crafted in fire.</p>
     </footer>
   );
 }

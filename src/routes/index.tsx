@@ -13,9 +13,9 @@ const EmberScene = lazy(() => import("@/ember/EmberScene").then((m) => ({ defaul
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "EMBER — Dining Reimagined" },
-      { name: "description", content: "EMBER is an immersive wood-fired fine dining experience — reservations, signatures, and an interactive 3D menu." },
-      { property: "og:title", content: "EMBER — Dining Reimagined" },
+      { title: "AURUM — Dining Reimagined" },
+      { name: "description", content: "AURUM is an immersive wood-fired fine dining experience — reservations, signatures, and an interactive 3D menu." },
+      { property: "og:title", content: "AURUM — Dining Reimagined" },
       { property: "og:description", content: "A culinary experience crafted for the senses." },
     ],
   }),
