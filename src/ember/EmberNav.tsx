@@ -90,11 +90,6 @@ export function EmberFooter() {
           <div className="text-xs uppercase tracking-[0.3em] text-[color:var(--ember)]">Hours</div>
           <p className="mt-3 text-sm text-muted-foreground">Tue – Sun · 7:00pm – 11:30pm</p>
           <p className="text-sm text-muted-foreground">Mondays · Closed</p>
-          <div className="mt-5 flex gap-4 text-xs text-muted-foreground">
-            <a href="#" className="hover:text-[color:var(--ember)]">Instagram</a>
-            <a href="#" className="hover:text-[color:var(--ember)]">Privacy</a>
-            <a href="#" className="hover:text-[color:var(--ember)]">Terms</a>
-          </div>
         </div>
       </div>
       <p className="mt-12 text-center text-xs text-muted-foreground">© {new Date().getFullYear()} AURUM. Crafted in fire.</p>
